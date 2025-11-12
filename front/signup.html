@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+  <style>
+    /* Full blue gradient for signup page */
+    body {
+      background: radial-gradient(circle at 20% 20%, #1e3a8a 0%, #1d4ed8 35%, #1e40af 55%, #172554 100%) !important;
+      color: #fff;
+    }
+    .navbar { background: transparent !important; }
+    .navbar a, .navbar-brand, .navbar-nav .nav-link { color: #fff !important; }
+    .auth-frame {
+      min-height: calc(100vh - 140px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .auth-card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.04) 60%, rgba(255,255,255,0.02) 100%);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.15);
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+      color: #fff;
+    }
+  </style>
+  <div class="auth-frame">
+    <div class="col-sm-10 col-md-7 col-lg-5 col-xl-4">
+      <div class="auth-card p-4 p-md-5 rounded-4">
+        <h2 class="mb-3">Create an account</h2>
+        <form method="post">
+          <div class="mb-3">
+            <label class="form-label">Username</label>
+            <input name="username" class="form-control" required />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input name="email" type="email" class="form-control" required />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input name="password" type="password" class="form-control" required />
+          </div>
+          <button class="btn btn-primary">Sign up</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

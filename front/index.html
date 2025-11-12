@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+  <style>
+    /* Full-screen blue gradient background only for landing page */
+    body {
+      background: radial-gradient(circle at 20% 20%, #1e3a8a 0%, #1d4ed8 35%, #1e40af 55%, #172554 100%) !important;
+      color: #fff;
+    }
+    .navbar { background: transparent !important; }
+    .navbar a, .navbar-brand, .navbar-nav .nav-link { color: #fff !important; }
+    .hero-frame {
+      min-height: calc(100vh - 140px); /* account for nav + margin */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.04) 60%, rgba(255,255,255,0.02) 100%);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.15);
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+    }
+    .hero-card h1 { font-weight: 600; letter-spacing: .5px; }
+    .hero-card .lead { color: rgba(255,255,255,0.85); }
+    .btn-primary { background: #2563eb; border-color: #2563eb; }
+    .btn-primary:hover { background: #1d4ed8; border-color: #1d4ed8; }
+    .btn-outline-light { border-color: rgba(255,255,255,0.8); color: #fff; }
+    .btn-outline-light:hover { background: rgba(255,255,255,0.15); }
+  </style>
+  <div class="hero-frame">
+    <div class="col-lg-8 col-xl-7">
+      <div class="hero-card p-5 text-center rounded-4">
+        <h1 class="mb-3">CallFlow AI</h1>
+        <p class="lead mb-4">The ultimate tool to run your company - powered by intelligent conversation!.</p>
+        <div>
+          <a class="btn btn-primary btn-lg me-2" href="/signup">Get Started</a>
+          <a class="btn btn-outline-light btn-lg" href="/login">Login</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

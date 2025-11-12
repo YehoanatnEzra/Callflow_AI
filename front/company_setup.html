@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="row">
+    <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+      <div class="setup-card p-4 p-md-5 mb-4">
+  <h2 class="mb-2">Company Setup</h2>
+  <p class="mb-4">Provide your company details so the assistant can personalize the pitch.</p>
+  <form method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+          <label class="form-label">Company name</label>
+          <input name="company_name" class="form-control" value="{{ company_name }}" required />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Company description</label>
+          <textarea name="company_description" class="form-control" rows="5" required>{{ company_description }}</textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Assistant display name (how the caller introduces themselves)</label>
+          <input name="assistant_name" class="form-control" value="{{ assistant_name }}" />
+        </div>
+
+        <!-- Removed background preview from this setup form; background is global and always applied. -->
+        <div class="mb-3">
+          <label class="form-label">Company logo</label>
+          {% if logo_image %}
+            <img src="{{ logo_image }}" alt="Logo" style="max-height:80px; border:1px solid #ddd; border-radius:8px; background:#fff; padding:4px;" />
+            <div class="form-text">Upload a new file below to replace the current logo.</div>
+          {% else %}
+            <div class="form-text mb-2">No logo uploaded yet.</div>
+          {% endif %}
+          <!-- Custom English-only upload control -->
+          <input id="logo_image" class="form-control d-none" type="file" name="logo_image" accept="image/*" />
+          <div class="d-flex align-items-center gap-2 mt-2">
+            <label for="logo_image" class="btn btn-outline-primary mb-0">Choose logo</label>
+            <span id="logo_file_name" class="text-muted small">No file chosen</span>
+          </div>
+          <div class="form-text">Supported: JPG, PNG, WEBP, GIF. Max ~5MB.</div>
+          <script>
+            (function(){
+              const input = document.getElementById('logo_image');
+              const out = document.getElementById('logo_file_name');
+              if (input && out) {
+                input.addEventListener('change', function(){
+                  if (this.files && this.files.length) {
+                    out.textContent = this.files[0].name;
+                  } else {
+                    out.textContent = 'No file chosen';
+                  }
+                });
+              }
+            })();
+          </script>
+        </div>
+        <div class="d-flex gap-2 mt-2 align-items-center">
+          <button class="btn btn-primary">Save</button>
+          <a class="btn btn-secondary" href="/dashboard">Cancel</a>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

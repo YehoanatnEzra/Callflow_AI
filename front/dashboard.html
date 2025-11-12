@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <h2>Welcome, {{ username }}</h2>
+      {% if needs_company %}
+        <div class="alert alert-warning">Please add your company details so the calling assistant can personalize the pitch.</div>
+        <p><a href="/company_setup" class="btn btn-outline-primary">Add company details</a></p>
+      {% else %}
+        <div class="mb-3 p-3 card-overlay" style="display:flex; gap:16px; align-items:center;">
+          {% if current_logo_image %}
+            <img src="{{ current_logo_image }}" alt="Logo" style="width:80px; height:80px; object-fit:cover; border-radius:8px; border:1px solid rgba(255,255,255,0.3); background:#fff;" />
+          {% else %}
+            <div style="width:80px; height:80px; border-radius:8px; border:1px solid rgba(255,255,255,0.25); background:linear-gradient(135deg,#007aff55,#00c7be55); display:flex; align-items:center; justify-content:center; color:#fff; font-size:12px; font-weight:600;">No logo</div>
+          {% endif %}
+          <div style="flex:1;">
+            <strong class="d-block mb-1">{{ company_name }}</strong>
+            <button type="button" class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#companyDetailsModal">
+              View company details
+            </button>
+            <a href="/company_setup" class="btn btn-sm btn-outline-warning text-dark ms-1">Edit</a>
+          </div>
+        </div>
+      {% endif %}
+
+      <div class="card-overlay p-3 p-md-4 mb-4">
+        <h4 class="mb-3">Make an outbound call</h4>
+        {% if message %}
+          <div class="alert alert-info">{{ message }}</div>
+        {% endif %}
+        <form method="post">
+          <div class="mb-3">
+            <label class="form-label">Phone number to call (include country code)</label>
+            <input name="to_number" class="form-control" placeholder="+9725..." required />
+          </div>
+          <button class="btn btn-success">Call</button>
+        </form>
+      </div>
+      <hr />
+      <p class="d-flex flex-wrap gap-2">
+        <a class="btn btn-info" href="/meetings">View Booked Meetings</a>
+        <a class="btn btn-secondary" href="/logout">Logout</a>
+      </p>
+    </div>
+  </div>
+  {% if not needs_company %}
+  <!-- Company Details Modal -->
+  <div class="modal fade" id="companyDetailsModal" tabindex="-1" aria-labelledby="companyDetailsLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="companyDetailsLabel">{{ company_name }}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3" style="text-align:center;">
+            {% if current_background_image %}
+              <img src="{{ current_background_image }}" alt="Company" style="max-width:320px; width:100%; border-radius:12px; border:1px solid rgba(0,0,0,0.2);" />
+            {% else %}
+              <div style="padding:40px 0; border-radius:12px; background:linear-gradient(135deg,#007aff55,#00c7be55); color:#fff; font-weight:600;">No image</div>
+            {% endif %}
+          </div>
+          <pre class="mb-0" style="white-space: pre-wrap;">{{ company_description }}</pre>
+        </div>
+        <div class="modal-footer">
+          <a class="btn btn-warning text-dark fw-semibold" href="/company_setup">Edit</a>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CallFlow AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <style>
+      body {
+        {% if current_background_image %}
+        /* Background image with a subtle dark gradient overlay for readability */
+        background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('{{ current_background_image }}') no-repeat center center fixed;
+        background-size: cover;
+        {% else %}
+        background: linear-gradient(180deg, #f7f9fc 0%, #eef2f7 100%);
+        {% endif %}
+      }
+      .container {
+        border-radius: 10px;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+      }
+      /* Setup card: nice default card even without background image */
+      .setup-card {
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      }
+      .setup-card .form-text { color: #6c757d; }
+      .setup-card .form-label { font-weight: 600; }
+      /* Landing hero card with vibrant gradient */
+      .hero-card {
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #6a11cb 100%);
+        color: #fff;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      }
+      .hero-card .btn-outline-light { border-color: rgba(255,255,255,0.8); color: #fff; }
+      .hero-card .btn-outline-light:hover { background: rgba(255,255,255,0.15); }
+      /* Blue login panel styling */
+      .auth-card {
+        background: #0d6efd; /* Bootstrap primary */
+        color: #fff;
+        border-radius: 12px;
+      }
+      .auth-card .form-label { color: #fff; }
+      .auth-card .form-control {
+        background: rgba(255,255,255,0.95);
+        color: #000;
+        border-color: rgba(255,255,255,0.9);
+      }
+      .auth-card .form-control::placeholder { color: rgba(0,0,0,0.55); }
+      .auth-card .btn-primary {
+        background: #fff;
+        color: #0d6efd;
+        border-color: #fff;
+      }
+      /* High-contrast form panel for readability on image backgrounds */
+      {% if current_background_image %}
+      .card-overlay {
+        background: rgba(0,0,0,0.5);
+        border-radius: 12px;
+        color: #fff;
+      }
+      .card-overlay .form-label { color: #fff; }
+      .card-overlay .form-control {
+        background: rgba(255,255,255,0.08);
+        border: 1px solid rgba(255,255,255,0.3);
+        color: #fff;
+      }
+      .card-overlay .form-control::placeholder { color: rgba(255,255,255,0.75); }
+      .card-overlay .alert-info { background: rgba(255,255,255,0.15); color: #fff; border-color: rgba(255,255,255,0.35); }
+      {% endif %}
+      /* Make navbar transparent over darkened image while keeping text readable */
+      .navbar {
+        {% if current_background_image %}
+        background: rgba(0,0,0,0.35) !important;
+        backdrop-filter: blur(2px);
+        {% endif %}
+      }
+      .navbar a, .navbar-brand, .navbar-nav .nav-link {
+        {% if current_background_image %}
+        color: #fff !important;
+        {% endif %}
+      }
+    </style>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+      <div class="container">
+  <a class="navbar-brand" href="/">CallFlow AI</a>
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav ms-auto">
+            {% if session.username %}
+            <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+            {% else %}
+            <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="/signup">Sign up</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div class="alert alert-info">{{ messages[0] }}</div>
+        {% endif %}
+      {% endwith %}
+      {% block content %}{% endblock %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

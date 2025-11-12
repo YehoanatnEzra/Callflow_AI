@@ -1,0 +1,23 @@
+[
+  {
+    "slot": "2025-11-18 10:00",
+    "call_sid": "CAf6f4d70a0bb7887a3f5bb4c5af319988",
+    "email": null,
+    "phone": "+972546374390",
+    "notes": "fallback_nl_booking_inferred_from_assistant_reply",
+    "pending_name_extraction": true,
+    "logged_at": "2025-11-12T18:25:22.034619"
+  },
+  {
+    "name": "Jonathan",
+    "email": "jonathan@gmail.com",
+    "datetime_iso": "2023-10-31T10:00",
+    "timezone": "Asia/Jerusalem",
+    "duration_min": 30,
+    "notes": "Discuss AI-powered performance optimization for athletics.",
+    "slot": "2025-11-25 10:00",
+    "call_sid": "CAf6f4d70a0bb7887a3f5bb4c5af319988",
+    "phone": "+972546374390",
+    "logged_at": "2025-11-12T18:27:14.778142"
+  }
+]
