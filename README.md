@@ -2,9 +2,14 @@
 
 An intelligent, AI-powered outbound calling platform that automates personalized sales calls using natural language processing and voice technology. The system combines Flask-based web management, Twilio Voice API integration, and OpenAI's GPT for conversation handling.
 
-<img width="1786" height="866" alt="image" src="https://github.com/user-attachments/assets/529ccda1-80b0-4ba7-85f9-e3ada10d72dc" /># Callflow_AI
+Demo:
 
-<img width="1801" height="890" alt="image" src="https://github.com/user-attachments/assets/c67e72fc-4927-4dde-a6b9-7096f9894519" />
+https://github.com/user-attachments/assets/2edcf8be-eac8-4579-9c1c-2b56b13f2835
+
+
+<img width="1786" height="866" alt="image" src="https://github.com/user-attachments/assets/529ccda1-80b0-4ba7-85f9-e3ada10d72dc" />
+
+
 
 
 
